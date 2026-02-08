@@ -1,26 +1,50 @@
-@import "tailwindcss";
+/* Global Theme Colors */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary-bg: #F4F1EA;
+  --secondary-text: #2F4F4F;
+  --accent-btn: #708238;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--primary-bg);
+  color: var(--secondary-text);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Product Section */
+
+h1, h2, h3 {
+  color: var(--secondary-text);
+}
+
+/* Buttons */
+
+button {
+  background-color: var(--accent-btn);
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Input Fields */
+
+input {
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
