@@ -467,28 +467,53 @@ export default function Home() {
 
     {/* Interest Form */}
     <form
-  onSubmit={(e) => {
-    e.preventDefault();
+  onSubmit={async (e) => {
+  e.preventDefault();
 
-    // ❌ No product selected
-    if (interestedProducts.length === 0) {
-      setToastMessage("Please select at least one product before submitting.");
-      setTimeout(() => setToastMessage(""), 3000);
-      return;
+  if (interestedProducts.length === 0) {
+    setToastMessage("Please select at least one product before submitting.");
+    setTimeout(() => setToastMessage(""), 3000);
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/interest", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone: mobile,
+        product: interestedProducts.join(", "),
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      throw new Error("Failed to submit interest");
     }
 
-    // ✅ SUCCESS (Supabase later)
+    // ✅ success
     setName("");
     setEmail("");
     setMobile("");
     setInterestedProducts([]);
 
+    setToastType("add");
     setToastMessage("Interest submitted successfully");
 
-    setTimeout(() => {
-      setToastMessage("");
-    }, 3000);
-  }}
+    setTimeout(() => setToastMessage(""), 3000);
+  } catch (err) {
+    console.error(err);
+    setToastType("remove");
+    setToastMessage("Something went wrong. Please try again.");
+
+    setTimeout(() => setToastMessage(""), 3000);
+  }
+}}
       className="bg-[#F5F2EB] max-w-xl mx-auto p-6 rounded-2xl shadow-sm space-y-5"
     >
 

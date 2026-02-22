@@ -15,12 +15,13 @@ export async function POST(req: Request) {
 
     if (error) {
       console.error("Supabase insert error:", error);
-      return NextResponse.json({ success: false, error });
+      return NextResponse.json(
+        { success: false, error: error.message },{ status: 500 });
     }
 
     return NextResponse.json({ success: true, data });
   } catch (err) {
     console.error("API error:", err);
-    return NextResponse.json({ success: false });
+    return NextResponse.json({ success: false, error: "Server error" },{ status: 500 });
   }
 }
