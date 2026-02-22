@@ -1,50 +1,54 @@
-/* Global Theme Colors */
+@import "tailwindcss";
 
-:root {
-  --primary-bg: #F4F1EA;
-  --secondary-text: #2F4F4F;
-  --accent-btn: #708238;
+/* ===== Product Card Layout Fix ===== */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.product-content {
+  flex-grow: 1;
 }
 
-body {
-  background-color: var(--primary-bg);
-  color: var(--secondary-text);
-  font-family: Arial, Helvetica, sans-serif;
+/* Clamp description to 2 lines */
+.product-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 48px;
 }
 
-/* Product Section */
-
-h1, h2, h3 {
-  color: var(--secondary-text);
+/* Keep button at bottom */
+.interested-btn {
+  margin-top: auto;
 }
 
-/* Buttons */
-
-button {
-  background-color: var(--accent-btn);
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-button:hover {
-  opacity: 0.9;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Input Fields */
-
-input {
-  padding: 8px;
-  margin: 6px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
 }
+
