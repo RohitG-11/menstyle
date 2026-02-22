@@ -77,7 +77,7 @@ export default function Home() {
       description: "Oversized white t-shirt with a trendy streetwear vibe.",
       price: 799,
       category: "T-Shirt",
-      image: "/products/tshirts/White-Oversized-T-shirt.jpg",
+      image: "/products/tshirts/White-Oversized-T-Shirt.jpg",
       isNew: true,
     },
     {
@@ -95,7 +95,7 @@ export default function Home() {
       description: "Smart navy polo t-shirt with a clean collar finish.",
       price: 999,
       category: "T-Shirt",
-      image: "/products/tshirts/Navy-Blue-Polo-T-shirt.jpg",
+      image: "/products/tshirts/Navy-Blue-Polo-T-Shirt.jpg",
       isNew: false,
     },
     {
