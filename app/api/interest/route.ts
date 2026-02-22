@@ -2,18 +2,25 @@ import { supabase } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const body = await req.json();
+  try {
+    const body = await req.json();
+    console.log("Received body:", body);
 
-  const { name, email, phone, product } = body;
+    const { name, email, phone, product } = body;
 
-  const { error } = await supabase
-    .from("interests")
-    .insert([{ name, email, phone, product }]);
+    const { data, error } = await supabase
+      .from("interests")
+      .insert([{ name, email, phone, product }])
+      .select();
 
-  if (error) {
-    console.log("Supabase error:", error);
+    if (error) {
+      console.error("Supabase insert error:", error);
+      return NextResponse.json({ success: false, error });
+    }
+
+    return NextResponse.json({ success: true, data });
+  } catch (err) {
+    console.error("API error:", err);
     return NextResponse.json({ success: false });
   }
-
-  return NextResponse.json({ success: true });
 }
